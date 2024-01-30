@@ -1,7 +1,5 @@
 #Creating a Caesar Cipher 
 
-import sys
-
 #Making code readable and maintainable by labeling ASCII numbers
 ASCII_CHAR_END = 90
 ASCII_ALPHA_RANGE = 26
@@ -32,26 +30,30 @@ def encrypt(message, k):
             encrypted_message += letters
     return encrypted_message
 
-encrypt("Hello World",7) 
 
 #function decrypting message 
-def decrypt(encrypted, k):
+def decrypt(message, k):
+    #String place holder to add decrypted message
     decrypted_message = ""
-    for letters in encrypted:
+    #for loop to iterate through letters in encrypted message
+    for letters in message:
+        #Making sure to only get alphabetical values w/ .isalpha()
         if letters.isalpha():
             enc_let_code = ord(letters)
             decrypt_let_code = enc_let_code - k 
+            #making sure to keep within the range of ASCII Letter numbers
             if decrypt_let_code < ASCII_CHAR_START:
                 decrypt_let_code += ASCII_ALPHA_RANGE
             decrypted_let = chr(decrypt_let_code)
             decrypted_message += decrypted_let
+        #part of if/else statement, want to keep non alphabetical values as is
         else:
             decrypted_message += letters
     return decrypted_message
 
 decrypt("OLSSV DVYSK",7) 
 
-
+import sys
 
 if __name__ == "__main__":
     # take in first arg as word
