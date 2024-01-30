@@ -1,35 +1,50 @@
-#The goal of ceasar cipher 
-# 1. Select some string value as your message. Label this string as “message”.
-# 2. Select some numeric key value to encode your message. Label this value as `k`.
-# 3. For each letter in “message”
+#Creating a Caesar Cipher 
 
-# a. Shift each letter in your message `k` letters forward.
-# b. If we go past the last letter in our alphabet (`z`), simply continue counting from
-# the first letter (`a`).
 import sys
 
-# encrypting a message 
+#Making code readable and maintainable by labeling ASCII numbers
+ASCII_CHAR_END = 90
+ASCII_ALPHA_RANGE = 26
+ASCII_CHAR_START = ord("A")
+
+
+# function for encrypting a message 
 def encrypt(message, k):
+    #assigning variable to string where we can add back our encrypted message  
     encrypted_message = ""
+    #for loop to run through each letter of the message, making them all cap to use same ASCII numbering  
+    for letters in message.upper():
+        #only shifting letters, not space or punctuations 
+        if letters.isalpha():
+            #converting letters to their ASCII number
+            letter_code = ord(letters)
+            #Shifting letter code 
+            new_let_code = letter_code + k
+            #Making sure our shift only happens within the ASCII alphabetical range
+            if new_let_code > ASCII_CHAR_END:
+                new_let_code -= ASCII_ALPHA_RANGE
+            #Assigning letters to shifted letter numbers 
+            encrypt_le = chr(new_let_code)
+            #adding new characters back to initial variable 
+            encrypted_message += encrypt_le
+        #if NOT alphabetical, then just adding back to encrypted message 
+        else: 
+            encrypted_message += letters
+    print(encrypted_message)
+
+encrypt("Hello World",7) 
+
+#decrypting message 
+def decrypt(message, k):
+    decrypted_message = ""
     for letters in message:
-        letter_code = ord(letters)
-        encrypt_letter = letter_code + k
-        new_char = chr(encrypt_letter)
-        encrypted_message = message + new_char
-        #print(letters, letter_code, encrypt_letter, new_char)
-
-
-#encrypt('hello world',2)
-print(encrypted_message)
-# character = 'a'
-# numer = ord(character)
-# print('This is the number', numer)
-
-# character = 'a'
-# numer = ord(character)
-# print(numer)
-
-# def decrypt(message, k):
+        if letters.isalpha():
+            enc_let_code = ord(letters)
+            decrypt_let_code = enc_let_code - k 
+            if decrypt_let_code < 65:
+                decrypt_let_code += ASCII_ALPHA_RANGE
+            
+        
 #     return
 
 
@@ -48,6 +63,3 @@ print(encrypted_message)
 #     print("Your encrypted word is", encrypted)
 #     print("Your decrypted word is", decrypted)
 
-# character = 'a'
-# numer = ord(character)
-# print(numer)
