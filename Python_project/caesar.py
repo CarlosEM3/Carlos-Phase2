@@ -8,37 +8,46 @@
 # the first letter (`a`).
 import sys
 
-#encrypting a message 
+# encrypting a message 
 def encrypt(message, k):
-message = 
-encrypted_message = 
-for letters in message:
-    enletters + k
-    return encrypted_message
-
-character = 'a'
-numer = ord(character)
-print(numer)
-
-def decrypt(message, k):
-    return
+    encrypted_message = ""
+    for letters in message:
+        letter_code = ord(letters)
+        encrypt_letter = letter_code + k
+        new_char = chr(encrypt_letter)
+        encrypted_message = message + new_char
+        #print(letters, letter_code, encrypt_letter, new_char)
 
 
-if __name__ == "__main__":
-    # take in first arg as word
-    message = sys.argv[1]
-    # take in second arg as int key
-    key = int(sys.argv[2])
+#encrypt('hello world',2)
+print(encrypted_message)
+# character = 'a'
+# numer = ord(character)
+# print('This is the number', numer)
 
-    # encrypt your word
-    encrypted = encrypt(message, key)
+# character = 'a'
+# numer = ord(character)
+# print(numer)
 
-    # decrypt your encrypted word
-    decrypted = decrypt(encrypted, key)
+# def decrypt(message, k):
+#     return
 
-    print("Your encrypted word is", encrypted)
-    print("Your decrypted word is", decrypted)
 
-character = 'a'
-numer = ord(character)
-print(numer)
+# if __name__ == "__main__":
+#     # take in first arg as word
+#     message = sys.argv[1]
+#     # take in second arg as int key
+#     key = int(sys.argv[2])
+
+#     # encrypt your word
+#     encrypted = encrypt(message, key)
+
+#     # decrypt your encrypted word
+#     decrypted = decrypt(encrypted, key)
+
+#     print("Your encrypted word is", encrypted)
+#     print("Your decrypted word is", decrypted)
+
+# character = 'a'
+# numer = ord(character)
+# print(numer)
