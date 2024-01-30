@@ -30,36 +30,41 @@ def encrypt(message, k):
         #if NOT alphabetical, then just adding back to encrypted message 
         else: 
             encrypted_message += letters
-    print(encrypted_message)
+    return encrypted_message
 
 encrypt("Hello World",7) 
 
-#decrypting message 
-def decrypt(message, k):
+#function decrypting message 
+def decrypt(encrypted, k):
     decrypted_message = ""
-    for letters in message:
+    for letters in encrypted:
         if letters.isalpha():
             enc_let_code = ord(letters)
             decrypt_let_code = enc_let_code - k 
-            if decrypt_let_code < 65:
+            if decrypt_let_code < ASCII_CHAR_START:
                 decrypt_let_code += ASCII_ALPHA_RANGE
-            
-        
-#     return
+            decrypted_let = chr(decrypt_let_code)
+            decrypted_message += decrypted_let
+        else:
+            decrypted_message += letters
+    return decrypted_message
+
+decrypt("OLSSV DVYSK",7) 
 
 
-# if __name__ == "__main__":
-#     # take in first arg as word
-#     message = sys.argv[1]
-#     # take in second arg as int key
-#     key = int(sys.argv[2])
 
-#     # encrypt your word
-#     encrypted = encrypt(message, key)
+if __name__ == "__main__":
+    # take in first arg as word
+    message = sys.argv[1]
+    # take in second arg as int key
+    key = int(sys.argv[2])
 
-#     # decrypt your encrypted word
-#     decrypted = decrypt(encrypted, key)
+    # encrypt your word
+    encrypted = encrypt(message, key)
 
-#     print("Your encrypted word is", encrypted)
-#     print("Your decrypted word is", decrypted)
+    # decrypt your encrypted word
+    decrypted = decrypt(encrypted, key)
+
+    print("Your encrypted word is", encrypted)
+    print("Your decrypted word is", decrypted)
 
